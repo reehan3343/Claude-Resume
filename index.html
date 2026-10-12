@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alex Smith - Resume</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { poppins: ['Poppins', 'sans-serif'] },
+          colors: { accent: '#ff6b3d', side: '#212121', sidehover: '#2f2f2f' }
+        }
+      }
+    }
+  </script>
+  <style>
+    html, body { height: 100%; overflow: hidden; }
+    main section { display: none; height: 100vh; overflow-y: auto; scrollbar-width: none; }
+    main section::-webkit-scrollbar { display: none; }
+    main section.active { display: block; }
+    /* A different entrance animation for each section */
+    @keyframes inFade  { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes inRight { from { opacity: 0; transform: translateX(80px); } to { opacity: 1; transform: none; } }
+    @keyframes inLeft  { from { opacity: 0; transform: translateX(-80px); } to { opacity: 1; transform: none; } }
+    @keyframes inUp    { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: none; } }
+    @keyframes inDown  { from { opacity: 0; transform: translateY(-60px); } to { opacity: 1; transform: none; } }
+    @keyframes inZoom  { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: none; } }
+    #home.active      { animation: inFade  .8s ease-out both; }
+    #about.active     { animation: inRight .6s ease-out both; }
+    #resume.active    { animation: inUp    .6s ease-out both; }
+    #portfolio.active { animation: inZoom  .6s ease-out both; }
+    #blog.active      { animation: inLeft  .6s ease-out both; }
+    #contact.active   { animation: inDown  .6s ease-out both; }
+    @media (prefers-reduced-motion: reduce) { main section.active { animation: none !important; } }
+    @media (max-width: 1023px) {
+      main section { padding-top: 52px; }
+      #sidebar { box-shadow: none; }
+      #sidebar:not(.-translate-x-full) { box-shadow: 6px 0 16px rgba(0,0,0,.55); }
+    }
+    .nav-link.active { background: #333; box-shadow: inset -3px 0 0 #ff6b3d; }
+    .fade-slide { animation: fadeUp 1s ease both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="font-poppins bg-neutral-900 text-white">
+
+  <!-- Mobile top bar -->
+  <div class="lg:hidden fixed top-0 left-0 right-0 z-50 flex h-[52px] items-center justify-between bg-side px-5 border-b border-neutral-700">
+    <a href="#home" class="flex items-center gap-3">
+      <img src="images/alex.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80'" alt="Alex Smith" class="h-9 w-9 object-cover" />
+      <span class="text-lg font-semibold">Alex Smith</span>
+    </a>
+    <button id="menuBtn" class="grid h-10 w-10 place-items-center text-xl" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+
+  <!-- Sidebar -->
+  <aside id="sidebar"
+    class="fixed top-0 left-0 z-40 h-full w-[160px] lg:w-[175px] lg:border-r-[15px] lg:border-black bg-side flex flex-col -translate-x-full lg:translate-x-0 transition-transform duration-300 pt-[52px] lg:pt-0">
+    <div class="hidden lg:block px-0 pt-6 text-center">
+      <img src="images/alex.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80'"
+           alt="Alex Smith" class="mx-auto h-20 w-20 object-cover" />
+      <h1 class="mt-5 text-[24px] leading-7 font-semibold">Alex<br />Smith</h1>
+    </div>
+
+    <nav class="mt-0 lg:mt-10 border-t border-neutral-700">
+      <a href="#home" class="nav-link active block border-b border-neutral-700 py-3.5 text-center text-[14px] hover:bg-sidehover transition">Home</a>
+      <a href="#about" class="nav-link block border-b border-neutral-700 py-3.5 text-center text-[14px] hover:bg-sidehover transition">About Me</a>
+      <a href="#resume" class="nav-link block border-b border-neutral-700 py-3.5 text-center text-[14px] hover:bg-sidehover transition">Resume</a>
+      <a href="#portfolio" class="nav-link block border-b border-neutral-700 py-3.5 text-center text-[14px] hover:bg-sidehover transition">Portfolio</a>
+      <a href="#blog" class="nav-link block border-b border-neutral-700 py-3.5 text-center text-[14px] hover:bg-sidehover transition">Blog</a>
+      <a href="#contact" class="nav-link block border-b border-neutral-700 py-3.5 text-center text-[14px] hover:bg-sidehover transition">Contact</a>
+    </nav>
+
+    <div class="mt-12 flex justify-center gap-2.5">
+      <a href="#" class="h-7 w-7 text-xs grid place-items-center bg-neutral-700 text-neutral-400 hover:bg-accent hover:text-white transition" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+      <a href="#" class="h-7 w-7 text-xs grid place-items-center bg-neutral-700 text-neutral-400 hover:bg-accent hover:text-white transition" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="#" class="h-7 w-7 text-xs grid place-items-center bg-neutral-700 text-neutral-400 hover:bg-accent hover:text-white transition" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+    </div>
+
+    <p class="mt-auto mb-6 px-4 text-center text-xs text-neutral-400">&copy; 2026 All rights reserved.</p>
+  </aside>
+
+  <!-- Main -->
+  <main class="lg:ml-[175px]">
+
+    <!-- Hero -->
+    <section id="home" class="relative h-screen min-h-[560px] overflow-hidden">
+      <div class="absolute inset-0 bg-cover bg-center"
+           style="background-image:url('images/hero.jpg'), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2000&q=80')"></div>
+      <div class="absolute inset-0 bg-black/60"></div>
+
+      <div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 fade-slide">
+        <h2 class="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight">Alex Smith</h2>
+        <p class="mt-4 text-xl sm:text-2xl font-light">Web Designer</p>
+      </div>
+
+    </section>
+
+    <!-- Placeholder sections so the sidebar links work -->
+    <section id="about" class="px-6 sm:px-10 lg:px-[70px] pt-12 pb-20 bg-side">
+      <!-- Title -->
+      <h2 class="text-[28px] font-semibold border-b-2 border-neutral-600 pb-2">About Me</h2>
+      <p class="mt-2 text-right text-[13px] text-neutral-400">Artist, Thinker, Creative Doer</p>
+
+      <!-- Intro + info -->
+      <div class="mt-10 grid gap-10 lg:grid-cols-2">
+        <div>
+          <h3 class="text-xl font-semibold">I am Web Designer @ Company.com</h3>
+          <p class="mt-3 text-[14px] leading-7 text-neutral-300">Praesent ut tortor consectetur, semper sapien non, lacinia augue. Aenean arcu libero, facilisis et nisi non, tempus faucibus tortor. Mauris vel nulla aliquam, pellentesque enim ac, faucibus tortor. Nulla odio nibh, cursus sit amet urna id, dignissim euismod augue.</p>
+          <p class="mt-3 text-[14px] leading-7 text-neutral-300">Duis sollicitudin, libero porttitor rutrum ultrices, turpis lacus fermentum justo, quis ornare augue tortor non est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+        </div>
+        <ul class="space-y-3 text-[14px]">
+          <li><span class="font-semibold border-b-2 border-accent pb-0.5 mr-3">Age</span><span class="text-neutral-300">29</span></li>
+          <li><span class="font-semibold border-b-2 border-accent pb-0.5 mr-3">Residence</span><span class="text-neutral-300">USA</span></li>
+          <li><span class="font-semibold border-b-2 border-accent pb-0.5 mr-3">Address</span><span class="text-neutral-300">88 Some Street, Some Town</span></li>
+          <li><span class="font-semibold border-b-2 border-accent pb-0.5 mr-3">e-mail</span><a href="mailto:email@example.com" class="text-accent">email@example.com</a></li>
+          <li><span class="font-semibold border-b-2 border-accent pb-0.5 mr-3">Phone</span><span class="text-neutral-300">+0123 123 456 789</span></li>
+          <li><span class="font-semibold border-b-2 border-accent pb-0.5 mr-3">Skype</span><span class="text-neutral-300">alex.smith</span></li>
+          <li><span class="font-semibold border-b-2 border-accent pb-0.5 mr-3">Freelance</span><span class="text-neutral-300">Available</span></li>
+        </ul>
+      </div>
+
+      <!-- What I Do -->
+      <h3 class="mt-14 inline-block text-xl font-semibold border-b-2 border-accent pb-1">What I Do</h3>
+      <div class="mt-8 grid gap-x-12 gap-y-8 md:grid-cols-2">
+        <div class="flex gap-5">
+          <i class="fa-solid fa-store text-4xl w-10 text-neutral-400 shrink-0"></i>
+          <div><h4 class="font-semibold text-lg">Ecommerce</h4><p class="mt-1 text-[13px] leading-6 text-neutral-300">Pellentesque pellentesque, ipsum sit amet auctor accumsan, odio tortor bibendum massa, sit amet ultricies ex lectus scelerisque nibh. Ut non sodales odio.</p></div>
+        </div>
+        <div class="flex gap-5">
+          <i class="fa-solid fa-pen text-4xl w-10 text-neutral-400 shrink-0"></i>
+          <div><h4 class="font-semibold text-lg">Copywriter</h4><p class="mt-1 text-[13px] leading-6 text-neutral-300">Pellentesque pellentesque, ipsum sit amet auctor accumsan, odio tortor bibendum massa, sit amet ultricies ex lectus scelerisque nibh. Ut non sodales odio.</p></div>
+        </div>
+        <div class="flex gap-5">
+          <i class="fa-solid fa-laptop text-4xl w-10 text-neutral-400 shrink-0"></i>
+          <div><h4 class="font-semibold text-lg">Web Design</h4><p class="mt-1 text-[13px] leading-6 text-neutral-300">Pellentesque pellentesque, ipsum sit amet auctor accumsan, odio tortor bibendum massa, sit amet ultricies ex lectus scelerisque nibh. Ut non sodales odio.</p></div>
+        </div>
+        <div class="flex gap-5">
+          <i class="fa-solid fa-flag text-4xl w-10 text-neutral-400 shrink-0"></i>
+          <div><h4 class="font-semibold text-lg">Management</h4><p class="mt-1 text-[13px] leading-6 text-neutral-300">Pellentesque pellentesque, ipsum sit amet auctor accumsan, odio tortor bibendum massa, sit amet ultricies ex lectus scelerisque nibh. Ut non sodales odio.</p></div>
+        </div>
+      </div>
+
+      <!-- Testimonials -->
+      <h3 class="mt-14 inline-block text-xl font-semibold border-b-2 border-accent pb-1">Testimonials</h3>
+      <div class="relative mt-8">
+        <div class="overflow-hidden">
+          <div id="testiTrack" class="flex w-[calc(100%+2rem)]"></div>
+        </div>
+        <div class="absolute bottom-0 right-0 z-20 flex gap-1">
+          <button id="tPrev" class="h-7 w-7 grid place-items-center bg-neutral-600 hover:bg-accent text-xs transition" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+          <button id="tNext" class="h-7 w-7 grid place-items-center bg-neutral-600 hover:bg-accent text-xs transition" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Clients -->
+      <h3 class="mt-12 inline-block text-xl font-semibold border-b-2 border-accent pb-1">Clients</h3>
+      <div id="clients" class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-2 text-[#3c3c3c] items-center"></div>
+      <div class="mt-8 flex justify-end gap-1">
+        <button id="cPrev" class="h-7 w-7 grid place-items-center bg-neutral-700 hover:bg-accent text-xs transition" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="cNext" class="h-7 w-7 grid place-items-center bg-neutral-700 hover:bg-accent text-xs transition" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+
+      <!-- Fun Facts -->
+      <h3 class="mt-8 inline-block text-xl font-semibold border-b-2 border-accent pb-1">Fun Facts</h3>
+      <div class="mt-8 grid gap-[30px] sm:grid-cols-2 lg:grid-cols-4">
+        <div class="bg-neutral-700/70 border border-neutral-600 py-7 text-center">
+          <i class="fa-regular fa-face-smile text-4xl text-neutral-300"></i>
+          <p class="mt-4 text-[15px] font-semibold">Happy Clients</p>
+          <p class="counter mt-1 text-3xl text-accent" data-to="2325">0</p>
+        </div>
+        <div class="bg-neutral-700/70 border border-neutral-600 py-7 text-center">
+          <i class="fa-regular fa-clock text-4xl text-neutral-300"></i>
+          <p class="mt-4 text-[15px] font-semibold">Working Hours</p>
+          <p class="counter mt-1 text-3xl text-accent" data-to="7582">0</p>
+        </div>
+        <div class="bg-neutral-700/70 border border-neutral-600 py-7 text-center">
+          <i class="fa-regular fa-circle-check text-4xl text-neutral-300"></i>
+          <p class="mt-4 text-[15px] font-semibold">Awards Won</p>
+          <p class="counter mt-1 text-3xl text-accent" data-to="12">0</p>
+        </div>
+        <div class="bg-neutral-700/70 border border-neutral-600 py-7 text-center">
+          <i class="fa-solid fa-mug-hot text-4xl text-neutral-300"></i>
+          <p class="mt-4 text-[15px] font-semibold">Coffee Consumed</p>
+          <p class="counter mt-1 text-3xl text-accent" data-to="2000">0</p>
+        </div>
+      </div>
+    </section>
+    <section id="resume" class="px-6 sm:px-10 lg:px-[70px] pt-12 pb-20 bg-side">
+      <h2 class="text-[28px] font-semibold border-b-2 border-neutral-600 pb-2">Resume</h2>
+      <p class="mt-2 text-right text-[13px] text-neutral-400">7 Years of Experience</p>
+
+      <div class="mt-10 grid gap-12 lg:grid-cols-[1fr_32%]">
+        <!-- Timelines -->
+        <div>
+          <h3 class="inline-block text-xl font-semibold border-b-2 border-accent pb-1">Education</h3>
+          <div class="mt-6">
+          <div class="grid md:grid-cols-[minmax(110px,28%)_40px_1fr] pb-6">
+            <div class="md:text-right md:pr-0 pt-0.5">
+              <p class="text-[14px] font-semibold leading-6">2008</p>
+              <p class="text-[12px] text-neutral-400">University of Studies</p>
+            </div>
+            <div class="relative hidden md:block">
+              <span class="absolute left-1/2 top-0 -bottom-6 w-px -translate-x-1/2 bg-neutral-600"></span>
+              <span class="absolute left-1/2 top-[7px] h-3 w-3 -translate-x-1/2 rounded-full border-2 border-accent bg-side"></span>
+            </div>
+            <div>
+              <h4 class="text-[17px] font-semibold leading-6">Fronted Development</h4>
+              <p class="mt-1 text-[13px] leading-6 text-neutral-300">Maecenas finibus nec sem ut imperdiet. Ut tincidunt est ac dolor aliquam sodales. Phasellus sed mauris hendrerit, laoreet sem in, lobortis ante.</p>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-[minmax(110px,28%)_40px_1fr] pb-6">
+            <div class="md:text-right md:pr-0 pt-0.5">
+              <p class="text-[14px] font-semibold leading-6">2007</p>
+              <p class="text-[12px] text-neutral-400">University of Studies</p>
+            </div>
+            <div class="relative hidden md:block">
+              <span class="absolute left-1/2 top-0 -bottom-6 w-px -translate-x-1/2 bg-neutral-600"></span>
+              <span class="absolute left-1/2 top-[7px] h-3 w-3 -translate-x-1/2 rounded-full border-2 border-accent bg-side"></span>
+            </div>
+            <div>
+              <h4 class="text-[17px] font-semibold leading-6">Graphic Design</h4>
+              <p class="mt-1 text-[13px] leading-6 text-neutral-300">Aliquam tincidunt malesuada tortor vitae iaculis. In eu turpis iaculis, feugiat risus quis, aliquet urna. Quisque fringilla mollis risus, eu pulvinar dolor.</p>
+            </div>
+          </div>
+          </div>
+
+          <h3 class="mt-8 inline-block text-xl font-semibold border-b-2 border-accent pb-1">Experience</h3>
+          <div class="mt-6">
+          <div class="grid md:grid-cols-[minmax(110px,28%)_40px_1fr] pb-6">
+            <div class="md:text-right md:pr-0 pt-0.5">
+              <p class="text-[14px] font-semibold leading-6">2016 - Current</p>
+              <p class="text-[12px] text-neutral-400">Google</p>
+            </div>
+            <div class="relative hidden md:block">
+              <span class="absolute left-1/2 top-0 -bottom-6 w-px -translate-x-1/2 bg-neutral-600"></span>
+              <span class="absolute left-1/2 top-[7px] h-3 w-3 -translate-x-1/2 rounded-full border-2 border-accent bg-side"></span>
+            </div>
+            <div>
+              <h4 class="text-[17px] font-semibold leading-6">Lead Ui/Ux Designer</h4>
+              <p class="mt-1 text-[13px] leading-6 text-neutral-300">Praesent dignissim sollicitudin justo, sed elementum quam lacinia quis. Phasellus eleifend tristique posuere. Sed vitae dui nec magna.</p>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-[minmax(110px,28%)_40px_1fr] pb-6">
+            <div class="md:text-right md:pr-0 pt-0.5">
+              <p class="text-[14px] font-semibold leading-6">2013 - 2016</p>
+              <p class="text-[12px] text-neutral-400">Adobe</p>
+            </div>
+            <div class="relative hidden md:block">
+              <span class="absolute left-1/2 top-0 -bottom-6 w-px -translate-x-1/2 bg-neutral-600"></span>
+              <span class="absolute left-1/2 top-[7px] h-3 w-3 -translate-x-1/2 rounded-full border-2 border-accent bg-side"></span>
+            </div>
+            <div>
+              <h4 class="text-[17px] font-semibold leading-6">Senior Ui/Ux Designer</h4>
+              <p class="mt-1 text-[13px] leading-6 text-neutral-300">Maecenas tempus faucibus rutrum. Duis eu aliquam urna. Proin vitae nulla tristique, ornare felis id, congue libero. Nam volutpat euismod quam.</p>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-[minmax(110px,28%)_40px_1fr] pb-6">
+            <div class="md:text-right md:pr-0 pt-0.5">
+              <p class="text-[14px] font-semibold leading-6">2011 - 2013</p>
+              <p class="text-[12px] text-neutral-400">Google</p>
+            </div>
+            <div class="relative hidden md:block">
+              <span class="absolute left-1/2 top-0 -bottom-6 w-px -translate-x-1/2 bg-neutral-600"></span>
+              <span class="absolute left-1/2 top-[7px] h-3 w-3 -translate-x-1/2 rounded-full border-2 border-accent bg-side"></span>
+            </div>
+            <div>
+              <h4 class="text-[17px] font-semibold leading-6">Junior Ui/Ux Designer</h4>
+              <p class="mt-1 text-[13px] leading-6 text-neutral-300">Duis mollis nunc quis quam viverra venenatis. Nulla nulla arcu, congue vitae nunc ac, sodales ultricies diam. Nullam justo leo, tincidunt sit amet.</p>
+            </div>
+          </div>
+          </div>
+
+          <a href="cv.pdf" download class="mt-6 inline-block border-2 border-accent px-7 py-2.5 text-[14px] hover:bg-accent transition">Download CV</a>
+        </div>
+
+        <!-- Skills -->
+        <div>
+          <h3 class="inline-block text-xl font-semibold border-b-2 border-accent pb-1">Design Skills</h3>
+          <div class="mt-6 space-y-4">
+        <div>
+          <div class="flex items-baseline justify-between"><span class="text-[13px] font-semibold">Web Design</span><span class="text-[11px] text-neutral-400">95%</span></div>
+          <div class="mt-1.5 h-[9px] rounded-full border border-accent p-[1px]"><div class="bar h-full w-0 rounded-full bg-accent transition-[width] duration-1000 ease-out" data-w="95%"></div></div>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between"><span class="text-[13px] font-semibold">Print Design</span><span class="text-[11px] text-neutral-400">65%</span></div>
+          <div class="mt-1.5 h-[9px] rounded-full border border-accent p-[1px]"><div class="bar h-full w-0 rounded-full bg-accent transition-[width] duration-1000 ease-out" data-w="65%"></div></div>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between"><span class="text-[13px] font-semibold">Logo Design</span><span class="text-[11px] text-neutral-400">80%</span></div>
+          <div class="mt-1.5 h-[9px] rounded-full border border-accent p-[1px]"><div class="bar h-full w-0 rounded-full bg-accent transition-[width] duration-1000 ease-out" data-w="80%"></div></div>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between"><span class="text-[13px] font-semibold">Graphic Design</span><span class="text-[11px] text-neutral-400">90%</span></div>
+          <div class="mt-1.5 h-[9px] rounded-full border border-accent p-[1px]"><div class="bar h-full w-0 rounded-full bg-accent transition-[width] duration-1000 ease-out" data-w="90%"></div></div>
+        </div>
+          </div>
+
+          <h3 class="mt-10 inline-block text-xl font-semibold border-b-2 border-accent pb-1">Coding Skills</h3>
+          <div class="mt-6 space-y-4">
+        <div>
+          <div class="flex items-baseline justify-between"><span class="text-[13px] font-semibold">JavaScript</span><span class="text-[11px] text-neutral-400">85%</span></div>
+          <div class="mt-1.5 h-[9px] rounded-full border border-accent p-[1px]"><div class="bar h-full w-0 rounded-full bg-accent transition-[width] duration-1000 ease-out" data-w="85%"></div></div>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between"><span class="text-[13px] font-semibold">PHP</span><span class="text-[11px] text-neutral-400">70%</span></div>
+          <div class="mt-1.5 h-[9px] rounded-full border border-accent p-[1px]"><div class="bar h-full w-0 rounded-full bg-accent transition-[width] duration-1000 ease-out" data-w="70%"></div></div>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between"><span class="text-[13px] font-semibold">Python</span><span class="text-[11px] text-neutral-400">60%</span></div>
+          <div class="mt-1.5 h-[9px] rounded-full border border-accent p-[1px]"><div class="bar h-full w-0 rounded-full bg-accent transition-[width] duration-1000 ease-out" data-w="60%"></div></div>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between"><span class="text-[13px] font-semibold">Perl</span><span class="text-[11px] text-neutral-400">75%</span></div>
+          <div class="mt-1.5 h-[9px] rounded-full border border-accent p-[1px]"><div class="bar h-full w-0 rounded-full bg-accent transition-[width] duration-1000 ease-out" data-w="75%"></div></div>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between"><span class="text-[13px] font-semibold">HTML / CSS</span><span class="text-[11px] text-neutral-400">100%</span></div>
+          <div class="mt-1.5 h-[9px] rounded-full border border-accent p-[1px]"><div class="bar h-full w-0 rounded-full bg-accent transition-[width] duration-1000 ease-out" data-w="100%"></div></div>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between"><span class="text-[13px] font-semibold">Smarty / Twig</span><span class="text-[11px] text-neutral-400">80%</span></div>
+          <div class="mt-1.5 h-[9px] rounded-full border border-accent p-[1px]"><div class="bar h-full w-0 rounded-full bg-accent transition-[width] duration-1000 ease-out" data-w="80%"></div></div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="portfolio" class="px-6 sm:px-10 lg:px-[70px] pt-12 pb-20 bg-side">
+      <h2 class="text-[28px] font-semibold border-b-2 border-neutral-600 pb-2">Portfolio</h2>
+      <p class="mt-2 text-right text-[13px] text-neutral-400">My Works</p>
+
+      <!-- Filters -->
+      <div id="pfFilters" class="mt-10 flex flex-wrap justify-end gap-1"><button class="pf-btn border px-3 py-1.5 text-[12px] transition hover:text-accent border-2 border-accent" data-f="all">All</button><button class="pf-btn border px-3 py-1.5 text-[12px] transition hover:text-accent border-neutral-700" data-f="media">Media</button><button class="pf-btn border px-3 py-1.5 text-[12px] transition hover:text-accent border-neutral-700" data-f="mockups">Mockups</button><button class="pf-btn border px-3 py-1.5 text-[12px] transition hover:text-accent border-neutral-700" data-f="soundcloud">SoundCloud</button><button class="pf-btn border px-3 py-1.5 text-[12px] transition hover:text-accent border-neutral-700" data-f="vimeo">Vimeo Videos</button><button class="pf-btn border px-3 py-1.5 text-[12px] transition hover:text-accent border-neutral-700" data-f="youtube">YouTube Videos</button></div>
+
+      <!-- Grid -->
+      <div id="pfGrid" class="mt-8 grid gap-[14px] sm:grid-cols-2 lg:grid-cols-4">
+        <a href="#" class="pf-item group relative block aspect-[3/2] overflow-hidden bg-neutral-800" data-cat="media">
+          <img src="images/portfolio/1.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=75'" alt="Minimal Desk" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+          <span class="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 transition group-hover:opacity-100">
+            <span class="text-[15px] font-semibold">Minimal Desk</span>
+            <span class="mt-1 text-[12px] text-accent">Media</span>
+          </span>
+        </a>
+        <a href="#" class="pf-item group relative block aspect-[3/2] overflow-hidden bg-neutral-800" data-cat="mockups">
+          <img src="images/portfolio/2.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=75'" alt="Meeting Room" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+          <span class="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 transition group-hover:opacity-100">
+            <span class="text-[15px] font-semibold">Meeting Room</span>
+            <span class="mt-1 text-[12px] text-accent">Mockups</span>
+          </span>
+        </a>
+        <a href="#" class="pf-item group relative block aspect-[3/2] overflow-hidden bg-neutral-800" data-cat="media">
+          <img src="images/portfolio/3.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=75'" alt="Reading Corner" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+          <span class="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 transition group-hover:opacity-100">
+            <span class="text-[15px] font-semibold">Reading Corner</span>
+            <span class="mt-1 text-[12px] text-accent">Media</span>
+          </span>
+        </a>
+        <a href="#" class="pf-item group relative block aspect-[3/2] overflow-hidden bg-neutral-800" data-cat="soundcloud">
+          <img src="images/portfolio/4.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=75'" alt="Cafe Space" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+          <span class="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 transition group-hover:opacity-100">
+            <span class="text-[15px] font-semibold">Cafe Space</span>
+            <span class="mt-1 text-[12px] text-accent">SoundCloud</span>
+          </span>
+        </a>
+        <a href="#" class="pf-item group relative block aspect-[3/2] overflow-hidden bg-neutral-800" data-cat="vimeo">
+          <img src="images/portfolio/5.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=75'" alt="Studio Light" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+          <span class="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 transition group-hover:opacity-100">
+            <span class="text-[15px] font-semibold">Studio Light</span>
+            <span class="mt-1 text-[12px] text-accent">Vimeo Videos</span>
+          </span>
+        </a>
+        <a href="#" class="pf-item group relative block aspect-[3/2] overflow-hidden bg-neutral-800" data-cat="youtube">
+          <img src="images/portfolio/6.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=75'" alt="Open Office" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+          <span class="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 transition group-hover:opacity-100">
+            <span class="text-[15px] font-semibold">Open Office</span>
+            <span class="mt-1 text-[12px] text-accent">YouTube Videos</span>
+          </span>
+        </a>
+        <a href="#" class="pf-item group relative block aspect-[3/2] overflow-hidden bg-neutral-800" data-cat="mockups">
+          <img src="images/portfolio/5.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=75'" alt="Workspace" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+          <span class="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 transition group-hover:opacity-100">
+            <span class="text-[15px] font-semibold">Workspace</span>
+            <span class="mt-1 text-[12px] text-accent">Mockups</span>
+          </span>
+        </a>
+        <a href="#" class="pf-item group relative block aspect-[3/2] overflow-hidden bg-neutral-800" data-cat="media">
+          <img src="images/portfolio/6.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=75'" alt="Team Table" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+          <span class="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 transition group-hover:opacity-100">
+            <span class="text-[15px] font-semibold">Team Table</span>
+            <span class="mt-1 text-[12px] text-accent">Media</span>
+          </span>
+        </a>
+      </div>
+    </section>
+    <section id="blog" class="px-6 sm:px-10 lg:px-[70px] pt-12 pb-20 bg-side">
+      <h2 class="text-[28px] font-semibold border-b-2 border-neutral-600 pb-2">Blog</h2>
+      <p class="mt-2 text-right text-[13px] text-neutral-400">My Diary</p>
+
+      <div class="mt-10 grid gap-7 md:grid-cols-2">
+        <a href="#" class="blog-post group block bg-[#333] overflow-hidden">
+          <div class="relative aspect-[789/370] overflow-hidden">
+            <img src="images/blog/1.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1000&q=75'" alt="Best Practices for Animated Progress Indicators" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+            <span class="absolute left-2 top-2 bg-black/80 px-2 py-0.5 text-[10px] leading-4">UI</span>
+          </div>
+          <div class="px-5 pt-4 pb-5">
+            <p class="text-[11px] text-neutral-400">06 Apr 2018</p>
+            <h3 class="mt-2 text-[16px] font-semibold leading-6 group-hover:text-accent transition">Best Practices for Animated Progress Indicators</h3>
+          </div>
+        </a>
+        <a href="#" class="blog-post group block bg-[#333] overflow-hidden">
+          <div class="relative aspect-[789/370] overflow-hidden">
+            <img src="images/blog/2.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1000&q=75'" alt="Designing the Perfect Feature Comparison Table" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+            <span class="absolute left-2 top-2 bg-black/80 px-2 py-0.5 text-[10px] leading-4">E-Commerce</span>
+          </div>
+          <div class="px-5 pt-4 pb-5">
+            <p class="text-[11px] text-neutral-400">06 Apr 2018</p>
+            <h3 class="mt-2 text-[16px] font-semibold leading-6 group-hover:text-accent transition">Designing the Perfect Feature Comparison Table</h3>
+          </div>
+        </a>
+        <a href="#" class="blog-post group block bg-[#333] overflow-hidden">
+          <div class="relative aspect-[789/370] overflow-hidden">
+            <img src="images/blog/3.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1000&q=75'" alt="An Overview of E-Commerce Platforms" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+            <span class="absolute left-2 top-2 bg-black/80 px-2 py-0.5 text-[10px] leading-4">E-Commerce</span>
+          </div>
+          <div class="px-5 pt-4 pb-5">
+            <p class="text-[11px] text-neutral-400">06 Apr 2018</p>
+            <h3 class="mt-2 text-[16px] font-semibold leading-6 group-hover:text-accent transition">An Overview of E-Commerce Platforms</h3>
+          </div>
+        </a>
+        <a href="#" class="blog-post group block bg-[#333] overflow-hidden">
+          <div class="relative aspect-[789/370] overflow-hidden">
+            <img src="images/blog/4.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1000&q=75'" alt="Why I Switched to Sketch For UI Design" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+            <span class="absolute left-2 top-2 bg-black/80 px-2 py-0.5 text-[10px] leading-4">Design</span>
+          </div>
+          <div class="px-5 pt-4 pb-5">
+            <p class="text-[11px] text-neutral-400">06 Apr 2018</p>
+            <h3 class="mt-2 text-[16px] font-semibold leading-6 group-hover:text-accent transition">Why I Switched to Sketch For UI Design</h3>
+          </div>
+        </a>
+        <a href="#" class="blog-post group block bg-[#333] overflow-hidden">
+          <div class="relative aspect-[789/370] overflow-hidden">
+            <img src="images/blog/5.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=1000&q=75'" alt="Creative and Innovative Navigation Designs" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+            <span class="absolute left-2 top-2 bg-black/80 px-2 py-0.5 text-[10px] leading-4">UI</span>
+          </div>
+          <div class="px-5 pt-4 pb-5">
+            <p class="text-[11px] text-neutral-400">06 Apr 2018</p>
+            <h3 class="mt-2 text-[16px] font-semibold leading-6 group-hover:text-accent transition">Creative and Innovative Navigation Designs</h3>
+          </div>
+        </a>
+        <a href="#" class="blog-post group block bg-[#333] overflow-hidden">
+          <div class="relative aspect-[789/370] overflow-hidden">
+            <img src="images/blog/6.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=75'" alt="6 Easy Steps to Better Icon Design" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+            <span class="absolute left-2 top-2 bg-black/80 px-2 py-0.5 text-[10px] leading-4">Design</span>
+          </div>
+          <div class="px-5 pt-4 pb-5">
+            <p class="text-[11px] text-neutral-400">06 Apr 2018</p>
+            <h3 class="mt-2 text-[16px] font-semibold leading-6 group-hover:text-accent transition">6 Easy Steps to Better Icon Design</h3>
+          </div>
+        </a>
+      </div>
+    </section>
+    <section id="contact" class="px-6 sm:px-10 lg:px-[70px] pt-12 pb-20 bg-side">
+      <h2 class="text-[28px] font-semibold border-b-2 border-neutral-600 pb-2">Contact</h2>
+      <p class="mt-2 text-right text-[13px] text-neutral-400">Get in Touch</p>
+
+      <!-- Map (dark-tinted Google Maps embed) -->
+      <div class="mt-10 h-[150px] overflow-hidden border border-neutral-700">
+        <iframe title="Map" class="h-full w-full border-0" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=San+Francisco&output=embed"></iframe>
+      </div>
+
+      <!-- Info cards -->
+      <div class="mt-7 grid gap-[30px] sm:grid-cols-2 lg:grid-cols-4">
+        <div class="bg-neutral-800 border border-neutral-700 py-7 text-center">
+          <i class="fa-solid fa-phone text-4xl text-neutral-300"></i>
+          <p class="mt-4 text-[15px] font-semibold">415-832-2000</p>
+        </div>
+        <div class="bg-neutral-800 border border-neutral-700 py-7 text-center">
+          <i class="fa-solid fa-location-dot text-4xl text-neutral-300"></i>
+          <p class="mt-4 text-[15px] font-semibold">San Francisco</p>
+        </div>
+        <div class="bg-neutral-800 border border-neutral-700 py-7 text-center">
+          <i class="fa-regular fa-envelope text-4xl text-neutral-300"></i>
+          <p class="mt-4 text-[15px] font-semibold">alex@example.com</p>
+        </div>
+        <div class="bg-neutral-800 border border-neutral-700 py-7 text-center">
+          <i class="fa-regular fa-circle-check text-4xl text-neutral-300"></i>
+          <p class="mt-4 text-[15px] font-semibold">Freelance Available</p>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="mx-auto mt-14 max-w-[1060px]">
+        <h3 class="inline-block text-xl font-semibold border-b-2 border-accent pb-1">How Can I Help You?</h3>
+        <form id="contactForm" class="mt-8 grid gap-8 lg:grid-cols-[1fr_1.06fr]">
+          <div class="space-y-[22px]">
+            <input name="name" type="text" required placeholder="Full Name" class="w-full h-[42px] bg-transparent border border-neutral-600 px-3 text-[14px] text-white placeholder-neutral-400 outline-none focus:border-accent transition" />
+            <input name="email" type="email" required placeholder="Email Address" class="w-full h-[42px] bg-transparent border border-neutral-600 px-3 text-[14px] text-white placeholder-neutral-400 outline-none focus:border-accent transition" />
+            <input name="subject" type="text" placeholder="Subject" class="w-full h-[42px] bg-transparent border border-neutral-600 px-3 text-[14px] text-white placeholder-neutral-400 outline-none focus:border-accent transition" />
+            <!-- Placeholder only: replace with a real reCAPTCHA (needs your own site key) -->
+            <div class="flex h-[77px] w-[302px] items-center gap-4 border border-neutral-500 bg-neutral-100 px-3 text-neutral-700 shadow">
+              <span class="h-7 w-7 border-2 border-neutral-500 bg-white"></span>
+              <span class="text-[14px]">I'm not a robot</span>
+              <span class="ml-auto text-[10px] text-neutral-500">reCAPTCHA</span>
+            </div>
+            <button type="submit" class="border-2 border-accent px-6 py-2.5 text-[14px] hover:bg-accent transition">Send message</button>
+          </div>
+          <textarea name="message" required placeholder="Message" class="h-[168px] w-full resize-y bg-transparent border border-neutral-600 px-3 py-3 text-[14px] text-white placeholder-neutral-400 outline-none focus:border-accent transition lg:h-[168px]"></textarea>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Section arrows (bottom right) -->
+  <div class="fixed bottom-6 right-6 z-30 flex bg-black border border-neutral-800">
+    <button id="secPrev" class="h-[38px] w-[38px] grid place-items-center text-neutral-300 hover:bg-accent hover:text-white transition" aria-label="Previous section"><svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4 7 12l8 8"/></svg></button>
+    <button id="secNext" class="h-[38px] w-[38px] grid place-items-center text-neutral-300 border-l border-neutral-700 hover:bg-accent hover:text-white transition" aria-label="Next section"><svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 4 8 8-8 8"/></svg></button>
+  </div>
+
+  <script>
+    // Mobile menu
+    const sidebar = document.getElementById('sidebar');
+    document.getElementById('menuBtn').addEventListener('click', () => sidebar.classList.toggle('-translate-x-full'));
+
+    document.addEventListener('click', e => {
+      if (window.innerWidth < 1024 && !sidebar.classList.contains('-translate-x-full')
+          && !sidebar.contains(e.target) && !document.getElementById('menuBtn').contains(e.target)) {
+        sidebar.classList.add('-translate-x-full');
+      }
+    });
+
+    // Show one section at a time (no page scroll)
+    const links = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('main section');
+    const openSection = id => {
+      if (!document.getElementById(id)) id = 'home';
+      sections.forEach(sec => {
+        const on = sec.id === id;
+        sec.classList.toggle('active', on);
+        if (on) sec.scrollTop = 0;
+      });
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+      document.querySelectorAll('.bar').forEach(b => { b.style.width = '0'; });
+      if (id === 'resume') setTimeout(() => document.querySelectorAll('.bar').forEach(b => { b.style.width = b.dataset.w; }), 80);
+    };
+    links.forEach(l => l.addEventListener('click', e => {
+      e.preventDefault();
+      const id = l.getAttribute('href').slice(1);
+      openSection(id);
+      history.replaceState(null, '', '#' + id);
+      if (window.innerWidth < 1024) sidebar.classList.add('-translate-x-full');
+    }));
+    openSection(location.hash.slice(1) || 'home');
+    document.querySelectorAll('.blog-post').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+
+    // Portfolio filter
+    const pfBtns = document.querySelectorAll('.pf-btn');
+    pfBtns.forEach(b => b.addEventListener('click', () => {
+      const f = b.dataset.f;
+      pfBtns.forEach(x => { x.classList.toggle('border-2', x === b); x.classList.toggle('border-accent', x === b); x.classList.toggle('border-neutral-700', x !== b); });
+      document.querySelectorAll('.pf-item').forEach(it => it.classList.toggle('hidden', f !== 'all' && it.dataset.cat !== f));
+    }));
+    document.querySelectorAll('.pf-item').forEach(it => it.addEventListener('click', e => e.preventDefault()));
+
+    // Contact form: opens the visitor's mail app with the message filled in
+    document.getElementById('contactForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const f = new FormData(e.target);
+      const body = f.get('message') + '\n\n- ' + f.get('name') + ' (' + f.get('email') + ')';
+      location.href = 'mailto:alex@example.com?subject=' + encodeURIComponent(f.get('subject') || 'Message from website') + '&body=' + encodeURIComponent(body);
+    });
+
+    // Bottom-right arrows: previous / next section
+    const stepSection = dir => {
+      const ids = Array.from(sections).map(sec => sec.id);
+      const cur = ids.indexOf(document.querySelector('main section.active').id);
+      const id = ids[(cur + dir + ids.length) % ids.length];
+      openSection(id);
+      history.replaceState(null, '', '#' + id);
+    };
+    document.getElementById('secPrev').onclick = () => stepSection(-1);
+    document.getElementById('secNext').onclick = () => stepSection(1);
+
+    // Testimonials slider (2 at a time)
+    const testimonials = [
+      { name: 'Gary Johnson', role: 'Locost Accessories', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=120&q=80', text: 'Nam tempor commodo mi id sodales. Aenean sit amet nibh nec sapien consequat porta a sit amet diam.' },
+      { name: 'Daniel Pringle', role: 'Rolling Thunder', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80', text: 'Donec eu est vel metus consequat volutpat. Nunc aliquet euismod mauris, a feugiat urna ullamcorper non.' },
+      { name: 'Sarah Miller', role: 'Bright Studio', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80', text: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.' },
+      { name: 'Emma Davis', role: 'Nova Agency', img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=120&q=80', text: 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.' }
+    ];
+    const tTrack = document.getElementById('testiTrack');
+    tTrack.innerHTML = testimonials.map(t => `
+      <div class="shrink-0 basis-full md:basis-1/2 pr-8">
+        <div class="ml-[50px] rounded border border-neutral-700 bg-neutral-800/40 px-6 py-4 text-[14px] italic leading-6 text-neutral-200 min-h-[92px]">${t.text}</div>
+        <div class="-mt-6 flex items-end gap-3">
+          <img src="${t.img}" alt="${t.name}" class="relative z-10 h-[78px] w-[78px] shrink-0 rounded-full object-cover border-2 border-neutral-600" />
+          <div class="pb-0.5"><p class="font-semibold text-[15px] leading-5">${t.name}</p><p class="mt-1 text-[12px] text-neutral-400">${t.role}</p></div>
+        </div>
+      </div>`).join('');
+    let tBusy = false;
+    const slideTesti = dir => {
+      if (tBusy) return;
+      tBusy = true;
+      const w = tTrack.firstElementChild.offsetWidth;
+      if (dir > 0) {
+        // next: cards slide out to the left, new card comes in from the right
+        tTrack.style.transition = 'transform .5s ease';
+        tTrack.style.transform = `translateX(${-w}px)`;
+        setTimeout(() => {
+          tTrack.style.transition = 'none';
+          tTrack.appendChild(tTrack.firstElementChild);
+          tTrack.style.transform = 'translateX(0)';
+          tBusy = false;
+        }, 520);
+      } else {
+        // previous: cards slide out to the right, new card comes in from the left
+        tTrack.style.transition = 'none';
+        tTrack.insertBefore(tTrack.lastElementChild, tTrack.firstElementChild);
+        tTrack.style.transform = `translateX(${-w}px)`;
+        void tTrack.offsetWidth;
+        tTrack.style.transition = 'transform .5s ease';
+        tTrack.style.transform = 'translateX(0)';
+        setTimeout(() => { tBusy = false; }, 520);
+      }
+    };
+    document.getElementById('tNext').onclick = () => slideTesti(1);
+    document.getElementById('tPrev').onclick = () => slideTesti(-1);
+
+    // Clients (greyed brand logos)
+    const clients = [
+      '<span class="text-[34px] font-bold tracking-tight">{less}</span>',
+      '<i class="fa-brands fa-adobe text-[40px]"></i><span class="text-[13px] font-semibold">Adobe</span>',
+      '<span class="text-[40px] font-bold tracking-tight">GitHub</span>',
+      '<i class="fa-brands fa-spotify text-[36px]"></i><span class="text-[22px] font-semibold tracking-tight">Spotify</span>',
+      '<i class="fa-solid fa-leaf text-[22px]"></i><span class="text-[28px] font-semibold tracking-tight">envato</span>',
+      '<i class="fa-brands fa-wordpress text-[24px]"></i><span class="font-serif text-[12px] font-semibold uppercase tracking-wide">WordPress</span>'
+    ];
+    let cStart = 0;
+    const cBox = document.getElementById('clients');
+    const renderClients = () => {
+      cBox.innerHTML = clients.map((_, i) => `<div class="flex h-14 items-center justify-center gap-1.5 whitespace-nowrap">${clients[(cStart + i) % clients.length]}</div>`).join('');
+    };
+    document.getElementById('cNext').onclick = () => { cStart = (cStart + 1) % clients.length; renderClients(); };
+    document.getElementById('cPrev').onclick = () => { cStart = (cStart - 1 + clients.length) % clients.length; renderClients(); };
+    renderClients();
+
+    // Fun facts counters
+    const counters = document.querySelectorAll('.counter');
+    const co = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target, to = +el.dataset.to, dur = 1500, t0 = performance.now();
+        const tick = now => {
+          const p = Math.min((now - t0) / dur, 1);
+          el.textContent = Math.floor(to * p).toLocaleString('en-US');
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        co.unobserve(el);
+      });
+    }, { threshold: 0.6 });
+    counters.forEach(c => co.observe(c));
+  </script>
+</body>
+</html>
