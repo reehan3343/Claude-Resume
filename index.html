@@ -38,6 +38,10 @@
     #blog.active      { animation: inLeft  .6s ease-out both; }
     #contact.active   { animation: inDown  .6s ease-out both; }
     @media (prefers-reduced-motion: reduce) { main section.active { animation: none !important; } }
+    /* Portfolio popup: simple ease-in-out fade (no flip) */
+    #pfModal { opacity: 0; transition: opacity .4s ease-in-out; }
+    #pfModal.open { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) { #pfModal { transition: none; } }
     @media (max-width: 1023px) {
       main section { padding-top: 52px; }
       #sidebar { box-shadow: none; }
@@ -384,14 +388,14 @@
           </span>
         </a>
         <a href="#" class="pf-item group relative block aspect-[3/2] overflow-hidden bg-neutral-800" data-cat="mockups">
-          <img src="images/portfolio/5.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=75'" alt="Workspace" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+          <img src="images/portfolio/7.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=75'" alt="Workspace" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
           <span class="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 transition group-hover:opacity-100">
             <span class="text-[15px] font-semibold">Workspace</span>
             <span class="mt-1 text-[12px] text-accent">Mockups</span>
           </span>
         </a>
         <a href="#" class="pf-item group relative block aspect-[3/2] overflow-hidden bg-neutral-800" data-cat="media">
-          <img src="images/portfolio/6.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=75'" alt="Team Table" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+          <img src="images/portfolio/8.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=75'" alt="Team Table" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
           <span class="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 transition group-hover:opacity-100">
             <span class="text-[15px] font-semibold">Team Table</span>
             <span class="mt-1 text-[12px] text-accent">Media</span>
@@ -404,7 +408,7 @@
       <p class="mt-2 text-right text-[13px] text-neutral-400">My Diary</p>
 
       <div class="mt-10 grid gap-7 md:grid-cols-2">
-        <a href="#" class="blog-post group block bg-[#333] overflow-hidden">
+        <a href="blog_single.html" class="blog-post group block bg-[#333] overflow-hidden">
           <div class="relative aspect-[789/370] overflow-hidden">
             <img src="images/blog/1.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1000&q=75'" alt="Best Practices for Animated Progress Indicators" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
             <span class="absolute left-2 top-2 bg-black/80 px-2 py-0.5 text-[10px] leading-4">UI</span>
@@ -414,7 +418,7 @@
             <h3 class="mt-2 text-[16px] font-semibold leading-6 group-hover:text-accent transition">Best Practices for Animated Progress Indicators</h3>
           </div>
         </a>
-        <a href="#" class="blog-post group block bg-[#333] overflow-hidden">
+        <a href="blog_single.html" class="blog-post group block bg-[#333] overflow-hidden">
           <div class="relative aspect-[789/370] overflow-hidden">
             <img src="images/blog/2.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1000&q=75'" alt="Designing the Perfect Feature Comparison Table" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
             <span class="absolute left-2 top-2 bg-black/80 px-2 py-0.5 text-[10px] leading-4">E-Commerce</span>
@@ -424,7 +428,7 @@
             <h3 class="mt-2 text-[16px] font-semibold leading-6 group-hover:text-accent transition">Designing the Perfect Feature Comparison Table</h3>
           </div>
         </a>
-        <a href="#" class="blog-post group block bg-[#333] overflow-hidden">
+        <a href="blog_single.html" class="blog-post group block bg-[#333] overflow-hidden">
           <div class="relative aspect-[789/370] overflow-hidden">
             <img src="images/blog/3.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1000&q=75'" alt="An Overview of E-Commerce Platforms" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
             <span class="absolute left-2 top-2 bg-black/80 px-2 py-0.5 text-[10px] leading-4">E-Commerce</span>
@@ -434,7 +438,7 @@
             <h3 class="mt-2 text-[16px] font-semibold leading-6 group-hover:text-accent transition">An Overview of E-Commerce Platforms</h3>
           </div>
         </a>
-        <a href="#" class="blog-post group block bg-[#333] overflow-hidden">
+        <a href="blog_single.html" class="blog-post group block bg-[#333] overflow-hidden">
           <div class="relative aspect-[789/370] overflow-hidden">
             <img src="images/blog/4.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1000&q=75'" alt="Why I Switched to Sketch For UI Design" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
             <span class="absolute left-2 top-2 bg-black/80 px-2 py-0.5 text-[10px] leading-4">Design</span>
@@ -444,7 +448,7 @@
             <h3 class="mt-2 text-[16px] font-semibold leading-6 group-hover:text-accent transition">Why I Switched to Sketch For UI Design</h3>
           </div>
         </a>
-        <a href="#" class="blog-post group block bg-[#333] overflow-hidden">
+        <a href="blog_single.html" class="blog-post group block bg-[#333] overflow-hidden">
           <div class="relative aspect-[789/370] overflow-hidden">
             <img src="images/blog/5.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=1000&q=75'" alt="Creative and Innovative Navigation Designs" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
             <span class="absolute left-2 top-2 bg-black/80 px-2 py-0.5 text-[10px] leading-4">UI</span>
@@ -454,7 +458,7 @@
             <h3 class="mt-2 text-[16px] font-semibold leading-6 group-hover:text-accent transition">Creative and Innovative Navigation Designs</h3>
           </div>
         </a>
-        <a href="#" class="blog-post group block bg-[#333] overflow-hidden">
+        <a href="blog_single.html" class="blog-post group block bg-[#333] overflow-hidden">
           <div class="relative aspect-[789/370] overflow-hidden">
             <img src="images/blog/6.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=75'" alt="6 Easy Steps to Better Icon Design" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
             <span class="absolute left-2 top-2 bg-black/80 px-2 py-0.5 text-[10px] leading-4">Design</span>
@@ -524,6 +528,57 @@
     <button id="secNext" class="h-[38px] w-[38px] grid place-items-center text-neutral-300 border-l border-neutral-700 hover:bg-accent hover:text-white transition" aria-label="Next section"><svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 4 8 8-8 8"/></svg></button>
   </div>
 
+
+  <!-- Portfolio project popup -->
+  <div id="pfModal" class="hidden fixed inset-0 z-[70] overflow-y-auto bg-side" role="dialog" aria-modal="true" aria-label="Project details">
+    <div class="mx-auto max-w-[1098px] px-6 pb-16 pt-5">
+      <div class="flex justify-end gap-1">
+        <button id="pfPrev" class="grid h-10 w-10 place-items-center bg-neutral-700 text-neutral-300 hover:bg-accent hover:text-white transition" aria-label="Previous project"><svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4 7 12l8 8"/></svg></button>
+        <button id="pfNext" class="grid h-10 w-10 place-items-center bg-neutral-700 text-neutral-300 hover:bg-accent hover:text-white transition" aria-label="Next project"><svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 4 8 8-8 8"/></svg></button>
+        <button id="pfClose" class="grid h-10 w-10 place-items-center bg-neutral-700 text-neutral-300 hover:bg-accent hover:text-white transition" aria-label="Close"><svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg></button>
+      </div>
+      <h2 id="pfTitle" class="mt-6 text-[28px] sm:text-[32px] font-semibold leading-tight"></h2>
+
+      <div class="mt-10 sm:mt-14 grid gap-[30px] lg:grid-cols-[1fr_420px]">
+        <!-- Slider + optional video -->
+        <div>
+          <div class="relative aspect-[3/2] overflow-hidden bg-neutral-800">
+            <div id="pfSlides"></div>
+            <div id="pfDots" class="absolute bottom-3 right-3 z-10 flex gap-2"></div>
+          </div>
+          <div id="pfVideoBox" class="mt-5 aspect-video overflow-hidden bg-[#151515]">
+            <iframe id="pfVideo" title="Project video" class="hidden h-full w-full border-0" allowfullscreen loading="lazy"></iframe>
+            <div id="pfNoVideo" class="flex h-full flex-col items-center justify-center px-6 text-center font-sans">
+              <p class="text-[34px] sm:text-[44px] font-bold leading-none">Sorry</p>
+              <p class="mt-2 max-w-[440px] text-[17px] sm:text-[22px] leading-[1.3]">This video isn't available. The owner has been notified.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info panel -->
+        <div class="self-start bg-[#333] p-[25px]">
+          <h3 class="inline-block text-[17px] font-semibold border-b-2 border-accent pb-0.5">Description</h3>
+          <ul class="mt-5 space-y-3 text-[13px]">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-user w-4 text-accent"></i><span id="pfAuthor"></span></li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-globe w-4 text-accent"></i><a id="pfSite" href="#" class="text-accent hover:underline"></a></li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-calendar w-4 text-accent"></i><span id="pfDate"></span></li>
+          </ul>
+          <p id="pfText" class="mt-5 text-justify text-[13px] leading-[26px] text-neutral-200"></p>
+
+          <h3 class="mt-7 inline-block text-[17px] font-semibold border-b-2 border-accent pb-0.5">Technology</h3>
+          <div id="pfTech" class="mt-4 flex flex-wrap gap-1"></div>
+
+          <h3 class="mt-7 inline-block text-[17px] font-semibold border-b-2 border-accent pb-0.5">Share</h3>
+          <div class="mt-4 flex gap-1.5">
+            <a href="#" class="grid h-7 w-7 place-items-center bg-neutral-400 text-[12px] text-neutral-800 hover:bg-accent hover:text-white transition" aria-label="Facebook"><i class="fa-brands fa-square-facebook"></i></a>
+            <a href="#" class="grid h-7 w-7 place-items-center bg-neutral-400 text-[12px] text-neutral-800 hover:bg-accent hover:text-white transition" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="grid h-7 w-7 place-items-center bg-neutral-400 text-[12px] text-neutral-800 hover:bg-accent hover:text-white transition" aria-label="Dribbble"><i class="fa-brands fa-dribbble"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Mobile menu
     const sidebar = document.getElementById('sidebar');
@@ -558,8 +613,6 @@
       if (window.innerWidth < 1024) sidebar.classList.add('-translate-x-full');
     }));
     openSection(location.hash.slice(1) || 'home');
-    document.querySelectorAll('.blog-post').forEach(a => a.addEventListener('click', e => e.preventDefault()));
-
     // Portfolio filter
     const pfBtns = document.querySelectorAll('.pf-btn');
     pfBtns.forEach(b => b.addEventListener('click', () => {
@@ -567,7 +620,85 @@
       pfBtns.forEach(x => { x.classList.toggle('border-2', x === b); x.classList.toggle('border-accent', x === b); x.classList.toggle('border-neutral-700', x !== b); });
       document.querySelectorAll('.pf-item').forEach(it => it.classList.toggle('hidden', f !== 'all' && it.dataset.cat !== f));
     }));
-    document.querySelectorAll('.pf-item').forEach(it => it.addEventListener('click', e => e.preventDefault()));
+    // Portfolio project popup
+    const pfModal = document.getElementById('pfModal');
+    const pfSrc = ['images/portfolio/1.jpg', 'images/portfolio/2.jpg', 'images/portfolio/3.jpg'];
+    const pfFallback = [
+      'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=75',
+      'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=75',
+      'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=75'
+    ];
+    // Shared details; edit these (or add per-item data-video="https://www.youtube.com/embed/ID" on a portfolio tile)
+    const pfInfo = {
+      author: 'Alex Smith',
+      site: 'www.project-site.com',
+      date: '25 december, 2016',
+      text: 'Aliquam euismod aliquam massa, quis eleifend dui sodales vitae. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
+      tech: ['HTML5', 'CSS3', 'jQuery', 'Ajax', 'PHP5']
+    };
+    const pfSlidesBox = document.getElementById('pfSlides');
+    const pfDotsBox = document.getElementById('pfDots');
+    pfSlidesBox.innerHTML = pfSrc.map((src, i) =>
+      `<img src="${src}" onerror="this.onerror=null;this.src='${pfFallback[i]}'" alt="" class="pf-slide absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${i ? 'opacity-0' : 'opacity-100'}" />`).join('');
+    pfDotsBox.innerHTML = pfSrc.map((_, i) =>
+      `<button class="pf-dot h-3 w-3 rounded-full border border-neutral-400 transition" data-i="${i}" aria-label="Slide ${i + 1}"></button>`).join('');
+    let pfList = [], pfIdx = 0, pfSlide = 0, pfTimer = null;
+
+    const pfShowSlide = n => {
+      pfSlide = (n + pfSrc.length) % pfSrc.length;
+      document.querySelectorAll('.pf-slide').forEach((im, i) => { im.classList.toggle('opacity-100', i === pfSlide); im.classList.toggle('opacity-0', i !== pfSlide); });
+      document.querySelectorAll('.pf-dot').forEach((d, i) => { d.classList.toggle('bg-neutral-400', i === pfSlide); d.classList.toggle('bg-white/80', i !== pfSlide); });
+    };
+    pfDotsBox.addEventListener('click', e => {
+      const d = e.target.closest('.pf-dot');
+      if (d) { pfShowSlide(+d.dataset.i); pfRestartTimer(); }
+    });
+    const pfRestartTimer = () => { clearInterval(pfTimer); pfTimer = setInterval(() => pfShowSlide(pfSlide + 1), 5000); };
+
+    const pfFill = i => {
+      pfIdx = (i + pfList.length) % pfList.length;
+      const item = pfList[pfIdx];
+      document.getElementById('pfTitle').textContent = item.querySelector('img').alt;
+      document.getElementById('pfAuthor').textContent = pfInfo.author;
+      const site = document.getElementById('pfSite');
+      site.textContent = pfInfo.site; site.href = 'http://' + pfInfo.site;
+      document.getElementById('pfDate').textContent = pfInfo.date;
+      document.getElementById('pfText').textContent = pfInfo.text;
+      document.getElementById('pfTech').innerHTML = pfInfo.tech.map(t => `<span class="bg-neutral-500 px-2 py-1 text-[11px] leading-none">${t}</span>`).join('');
+      const v = document.getElementById('pfVideo'), none = document.getElementById('pfNoVideo');
+      if (item.dataset.video) { v.src = item.dataset.video; v.classList.remove('hidden'); none.classList.add('hidden'); }
+      else { v.removeAttribute('src'); v.classList.add('hidden'); none.classList.remove('hidden'); }
+      pfShowSlide(0);
+      pfRestartTimer();
+      pfModal.scrollTop = 0;
+    };
+    let pfCloseTimer = null;
+    const pfOpen = item => {
+      clearTimeout(pfCloseTimer);
+      pfList = Array.from(document.querySelectorAll('.pf-item')).filter(x => !x.classList.contains('hidden'));
+      pfModal.classList.remove('hidden');
+      void pfModal.offsetWidth;            // paint the start state (invisible) first
+      pfModal.classList.add('open');       // fades in
+      pfFill(pfList.indexOf(item));
+    };
+    const pfClose = () => {
+      pfModal.classList.remove('open');
+      clearInterval(pfTimer);
+      pfCloseTimer = setTimeout(() => {    // hide once the fade-out has finished
+        pfModal.classList.add('hidden');
+        document.getElementById('pfVideo').removeAttribute('src');
+      }, 400);
+    };
+    document.querySelectorAll('.pf-item').forEach(it => it.addEventListener('click', e => { e.preventDefault(); pfOpen(it); }));
+    document.getElementById('pfPrev').onclick = () => pfFill(pfIdx - 1);
+    document.getElementById('pfNext').onclick = () => pfFill(pfIdx + 1);
+    document.getElementById('pfClose').onclick = pfClose;
+    document.addEventListener('keydown', e => {
+      if (!pfModal.classList.contains('open')) return;
+      if (e.key === 'Escape') pfClose();
+      if (e.key === 'ArrowLeft') pfFill(pfIdx - 1);
+      if (e.key === 'ArrowRight') pfFill(pfIdx + 1);
+    });
 
     // Contact form: opens the visitor's mail app with the message filled in
     document.getElementById('contactForm').addEventListener('submit', e => {
